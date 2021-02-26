@@ -1,18 +1,18 @@
 *** Settings ***
-Library    Selenium2Library
+Library         SeleniumLibrary
 
+Test Setup       Open Browser And Go To Page
+Test Teardown    Close Browser
+ 
 *** Variables ***
-${browser}    chrome
-${url}    https://google.com/
-
-
-*** Keywords ***
-open google.com
-    Open Browser     ${url}     ${browser}
-check title
-    title should be     google
-
+${FORM_URL}         https://www.google.com/
+${BROWSER}          chrome
+ 
 *** Test Cases ***
-Search case
-   open google.com
-   check title
+Page Should Show Header
+    [Documentation]     When visit the page it should show the text Hello World
+    Page Should Contain     Google
+ 
+*** Keywords ***
+Open Browser And Go To Page
+    Open Browser    ${FORM_URL}   ${BROWSER}
